@@ -20,7 +20,7 @@ _LOG = logging.getLogger(__name__)
 
 class Test_docker(hdoctest.DockerTestCase):
     """
-    Run all Docker tests for `class_project/project_template`.
+    Run all Docker tests for `class_project/UmdTask599_DATA605_Fall2026_AutoKeras_Project_Description`.
     """
 
     _test_file = __file__
@@ -28,10 +28,10 @@ class Test_docker(hdoctest.DockerTestCase):
     @pytest.mark.slow
     def test1(self) -> None:
         """
-        Test that `template.example.ipynb` runs without error inside Docker.
+        Test that `autokeras.example.ipynb` runs without error inside Docker.
         """
         # Prepare inputs.
-        notebook_name = "template.example.ipynb"
+        notebook_name = "autokeras.example.ipynb"
         # Run test.
         self.run_notebook(
             notebook_name, use_docker_cmd=True, generate_html=False
@@ -40,10 +40,10 @@ class Test_docker(hdoctest.DockerTestCase):
     @pytest.mark.slow
     def test2(self) -> None:
         """
-        Test that `template.API.ipynb` runs without error inside Docker.
+        Test that `autokeras.API.ipynb` runs without error inside Docker.
         """
         # Prepare inputs.
-        notebook_name = "template.API.ipynb"
+        notebook_name = "autokeras.API.ipynb"
         # Run test.
         self.run_notebook(
             notebook_name, use_docker_cmd=True, generate_html=False

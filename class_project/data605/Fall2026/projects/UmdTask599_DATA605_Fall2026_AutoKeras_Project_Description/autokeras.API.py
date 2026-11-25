@@ -73,7 +73,7 @@ print("TF: ", tf.__version__, "AK: ", ak.__version__, "YF: ", yf.__version__)
 
 # %%
 # Import local functions:
-import UmdTask599_DATA605_Fall2026_AutoKeras_Project_Description_utils as utils
+import autokeras_utils as utils
 
 # Use this for most notebooks.
 import helpers.hdbg as hdbg
