@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.19.0
+#       jupytext_version: 1.19.3
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -29,9 +29,11 @@
 # - Your code should be well commented.
 #
 # Guide: https://github.com/causify-ai/helpers/blob/master/docs/coding/all.jupyter_notebook.how_to_guide.md
+#
+# New link: https://github.com/causify-ai/helpers/blob/master/docs/tools/notebooks/all.jupyter_notebook.how_to_guide.md
 
 # %% [markdown]
-# ## Imports
+# # 1. Imports
 
 # %%
 # %load_ext autoreload
@@ -139,5 +141,11 @@ def template_function(arg1: int) -> None:
 # ## Level 2
 # ### Level 3
 # ```
+
+# %% [markdown]
+# # References
+#
+# - AutoKeras version 1.1.0 Github Repository: https://github.com/keras-team/autokeras/tree/1.1.0
+# - 
 
 # %%

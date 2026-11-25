@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.19.0
+#       jupytext_version: 1.19.3
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -29,22 +29,37 @@
 # - Your code should be well commented.
 #
 # Guide: https://github.com/causify-ai/helpers/blob/master/docs/coding/all.jupyter_notebook.how_to_guide.md
+#
+# New link: https://github.com/causify-ai/helpers/blob/master/docs/tools/notebooks/all.jupyter_notebook.how_to_guide.md
 
 # %% [markdown]
-# ## Imports
+# # 1. Import Packages and Load Financial Data
+#
+# ## 1.1. Import Packages
 
 # %%
 # %load_ext autoreload
 # %autoreload 2
 
 # System libraries.
+import os
 import logging
+import shutil
 
 # Third-party libraries.
-# import numpy as np
-# import pandas as pd
-# import seaborn as sns
-# import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# %%
+# Core packages installed for project.
+
+import yfinance as yf
+import tensorflow as tf
+import autokeras as ak
+
+print("TF: ", tf.__version__, "AK: ", ak.__version__, "YF: ", yf.__version__)
 
 # %%
 # # To install additional packages, use:
@@ -57,6 +72,9 @@ import logging
 # )
 
 # %%
+# Import local functions:
+import UmdTask599_DATA605_Fall2026_AutoKeras_Project_Description_utils as utils
+
 # Use this for most notebooks.
 import helpers.hdbg as hdbg
 import helpers.hnotebook as hnotebook
@@ -72,6 +90,29 @@ try:
     from IPython.display import display
 except ImportError:
     display = print  # type: ignore
+
+# %% [markdown]
+# ## 1.2. Load Financial Data
+
+# %%
+# Load SPY dataframe from CSV file using function:
+
+utils.load_volatility_timeseries()
+
+# %%
+# Remove directory from previous run of "time_series_forecaster", including the stale failed oracle folder
+shutil.rmtree("./time_series_forecaster", ignore_errors=True)
+
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
 
 # %% [markdown]
 # ## Make the notebook flow clear
@@ -137,3 +178,11 @@ def template_function(arg1: int) -> None:
 # ## Level 2
 # ### Level 3
 # ```
+
+# %% [markdown]
+# # References
+#
+# - AutoKeras version 1.1.0 Github Repository: https://github.com/keras-team/autokeras/tree/1.1.0
+# - 
+
+# %%
