@@ -12,7 +12,16 @@
 #     name: python3
 # ---
 
-# %% colab_type="code"
+# %% [markdown] colab_type="code"
+# # Example Code From Autokeras Github Repository
+#
+# This notebook was downloaded from the autokeras version 1.1.0 github repository, and is provided as an example of `TimeSeriesForecaster`.
+#
+# AutoKeras Reference websites:
+# - v1.1.0 github repository: https://github.com/keras-team/autokeras/tree/1.1.0
+# - Example Notebooks: https://github.com/keras-team/autokeras/tree/1.1.0/docs/ipynb
+
+# %%
 # # !pip install autokeras
 
 # %% colab_type="code"
@@ -32,8 +41,8 @@ import autokeras as ak
 #
 
 # %% colab_type="code"
-# Dana modified original notebook by downloaded UCI ZIP file directly and placing it
-# in same directory as this .ipynb.
+# Modified original notebook by downloading UCI ZIP file directly and placing CSV file
+# in same directory as this notebook.
 
 # Filename:
 filename = "AirQualityUCI.csv"

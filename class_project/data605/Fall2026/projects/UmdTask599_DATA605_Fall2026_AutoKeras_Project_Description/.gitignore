@@ -1,1 +1,2 @@
-time_series_forecaster/
+time_series_forecaster*/
+.ipynb_checkpoints/

@@ -50,28 +50,19 @@ import shutil
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib
 import matplotlib.pyplot as plt
 
-# %%
+# Following lines ensure inline plots render properly with installed version of matplotlib
+if not hasattr(matplotlib.rcParams, "_get"):
+    matplotlib.rcParams._get = matplotlib.rcParams.get
+
 # Core packages installed for project.
 
 import yfinance as yf
 import tensorflow as tf
 import autokeras as ak
 
-print("TF: ", tf.__version__, "AK: ", ak.__version__, "YF: ", yf.__version__)
-
-# %%
-# # To install additional packages, use:
-# import helpers.hmodule as hmodule
-# hmodule.install_module_if_not_present(
-#     ["pycaret"],
-#     use_activate=True,
-#     use_sudo=False,
-#     venv_path="/opt/venv",
-# )
-
-# %%
 # Import local functions:
 import autokeras_utils as utils
 
@@ -85,12 +76,26 @@ _LOG = logging.getLogger(__name__)
 hdbg.init_logger(verbosity=logging.INFO)
 hnotebook.config_notebook()
 
+# Set plots to default style:
+plt.style.use("default")
+
 # Convert `display` into `print()`.
 try:
     from IPython.display import display
 except ImportError:
     display = print  # type: ignore
 
+print("TF: ", tf.__version__, "AK: ", ak.__version__, "YF: ", yf.__version__)
+
+# %%
+# # To install additional packages, use:
+# import helpers.hmodule as hmodule
+# hmodule.install_module_if_not_present(
+#     ["pycaret"],
+#     use_activate=True,
+#     use_sudo=False,
+#     venv_path="/opt/venv",
+# )
 
 # %% [markdown]
 # ## 1.2. Load Financial Data
@@ -174,6 +179,15 @@ def template_function(arg1: int) -> None:
 # # References
 #
 # - AutoKeras version 1.1.0 Github Repository: https://github.com/keras-team/autokeras/tree/1.1.0
-# - 
+# - AutoKeras Issue #1554 workaround: https://github.com/keras-team/autokeras/issues/1554
+# - Jin, H., Chollet, F., Song, Q., & Hu, X. (2023). AutoKeras: An AutoML Library for Deep Learning. *Journal of Machine Learning Research*, *24*(6), 1–6. https://www.jmlr.org/papers/volume24/20-1355/20-1355.pdf
+# - Keras CSV Logger:
+#   - https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/CSVLogger
+#   - https://keras.io/api/callbacks/csv_logger/
+# - Pandas Series clip(): https://pandas.pydata.org/docs/reference/api/pandas.Series.clip.html
+# - Portfolio Optimizer. (2023, September 20). *Range-Based Volatility Estimators: Overview and Examples of Usage*. https://portfoliooptimizer.io/blog/range-based-volatility-estimators-overview-and-examples-of-usage/#garman-klass-volatility-estimator
+# - TensorFlow/Keras `Model.fit` (called under the hood by `TimeseriesForecaster.fit`): https://www.geeksforgeeks.org/deep-learning/model-fit-in-tensorflow/
+#
+#
 
 # %%

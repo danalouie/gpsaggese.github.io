@@ -15,6 +15,7 @@ import class_project.project_template.template_utils as utils
 
 import logging
 import os
+import sys
 
 from typing import Any, Optional, Tuple
 
@@ -111,6 +112,77 @@ def load_volatility_timeseries(csv_path="data/spy_volatility_timeseries_2005_202
     print(spy_df.describe())
 
     return spy_df
+
+# #############################################################################
+# Function: Read CSVLogger history; plot training/validation loss over epochs
+# #############################################################################
+
+def plot_train_val_loss(csv_path,num_epoch,test_mse=None,title="Loss over Epochs",save_plot=False,save_filename=None):
+    """Read CSV logger epoch history and plot training & validation loss over epochs."""
+    hist_df = pd.read_csv(csv_path).tail(num_epoch).reset_index(drop=True)
+    epochs = hist_df["epoch"]+1 # List of epochs
+    
+    plt.figure(figsize=(8,5.5))
+    plt.plot(epochs,hist_df["loss"],marker='o',label="Training MSE",color='darkviolet')
+    plt.plot(epochs,hist_df["val_loss"],marker='s',label="Validation MSE",color='darkgreen')
+    if test_mse is not None:
+        plt.axhline(
+            test_mse,
+            color = 'darkgoldenrod',
+            linestyle = '--',
+            linewidth = 3,
+            label=f"Test MSE: {test_mse:.4f}",
+        )
+    plt.xlabel("Epoch",fontweight='bold',fontsize=14)
+    plt.ylabel("Mean Squared Error \n[Target: Log(Garman-Klass variance)]",fontweight='bold',fontsize=14)
+    plt.title(title,fontweight='bold',fontsize=14)
+    plt.xticks(epochs)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    if save_plot and save_filename:
+        parent_dir = os.path.dirname(save_filename)
+        if parent_dir:
+            os.makedirs(parent_dir, exist_ok=True)
+        plt.savefig(save_filename,dpi=300)
+    plt.show()
+
+
+# #############################################################################
+# Class to allow saving Jupyter notebook output to file while displaying in notebook
+# This code was created by Google AI
+# #############################################################################
+
+class TeeOutput:
+    """Write stdout to both the notebook display and a log file simultaneously."""
+
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self.terminal = sys.stdout
+        self.log = None
+
+    def __enter__(self):
+        self.terminal = sys.stdout
+        self.log = open(self.filepath, "w")
+        sys.stdout = self
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout = self.terminal
+        if self.log is not None:
+            self.log.close()
+
+    def write(self, message):
+        self.terminal.write(message)
+        if self.log is not None:
+            self.log.write(message)
+
+    def flush(self):
+        self.terminal.flush()
+        if self.log is not None:
+            self.log.flush()
+
+
 
 # #############################################################################
 # Cell 1: Interactive Distribution Explorer with Plot Type Selection
